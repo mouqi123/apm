@@ -14,13 +14,13 @@ var STATIC = BASE_DIR + '/';
 var mimeMap = getMimeConf(); // responseource map, refer to http://www.freeformatter.com/mime-types-list.html#mime-types-list for detail
 var CACHE_TIME = 60*60*24*365;
 
-exports.getStaticFile = (pathname, request, responseponse) => {
+exports.getStaticFile = (pathname, request, response) => {
 
 	// get extend type of the file
-	var extname = path.path.extname(pathname);
+	var extname = path.extname(pathname);
 	extname = extname ? extname.slice(1) : '';
 	var absolutePath = STATIC + pathname;
-	var mimeType = mimeMap[extname] ? mime[extname] : 'text/plain';
+	var mimeType = mimeMap[extname] ? mimeMap[extname] : 'text/plain';
 	console.log(`client request mime type is ${extname}`);
 
 	fs.stat(absolutePath, (err, stats) => {
